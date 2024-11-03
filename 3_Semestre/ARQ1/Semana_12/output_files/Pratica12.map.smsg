@@ -1,0 +1,3 @@
+Warning (10273): Verilog HDL warning at extend.sv(18): extended using "x" or "z"
+Warning (10273): Verilog HDL warning at aluExtraInst.sv(27): extended using "x" or "z"
+Warning (10273): Verilog HDL warning at alu.sv(27): extended using "x" or "z"

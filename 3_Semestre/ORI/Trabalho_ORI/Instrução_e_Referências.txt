@@ -1,0 +1,16 @@
+Instrução: o código pode ser compilado diretamente, não existe nenhum arquivo auxiliar sendo usado.
+Código está comentado passo a passo, incluindo a Main.
+
+
+Referências:
+- Slides da Aula 07 
+
+- Aulas do Professor André Backes:
+https://www.youtube.com/watch?v=r6psF2NUMfg
+https://www.youtube.com/watch?v=lmg_zIWw3RM&t=643s
+https://www.youtube.com/watch?v=IYn2D-Ake7U
+
+- Explicação e Referência de Código do Site: "Programiz"
+https://www.programiz.com/dsa/b-tree
+https://www.programiz.com/dsa/insertion-into-a-b-tree
+https://www.programiz.com/dsa/deletion-from-a-b-tree

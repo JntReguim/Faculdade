@@ -1,0 +1,5 @@
+O kernel Linux é o principal componente de um sistema operacional Linux e é a interface central, ou núcleo, entre o hardware de um computador 
+e seus processos. Ele estabelece a comunicação entre ambos, gerenciando recursos com a maior eficiência possível.
+
+"Kernel" em inglês significa "núcleo" ou "grão" e é seguindo essa analogia que ele existe no sistema operacional: o kernel controla todas as 
+principais funções do hardware, seja este um smartphone, um laptop, um servidor ou qualquer outro tipo de computador.
