@@ -1,5 +1,36 @@
-O kernel Linux é o principal componente de um sistema operacional Linux e é a interface central, ou núcleo, entre o hardware de um computador 
-e seus processos. Ele estabelece a comunicação entre ambos, gerenciando recursos com a maior eficiência possível.
+Comandos para terminal do Linux
+ctrl + c            //quebra o processo atual
+ctrl + shift + c    //copia o texto
+ctrl + shift + v    //cola o texto
 
-"Kernel" em inglês significa "núcleo" ou "grão" e é seguindo essa analogia que ele existe no sistema operacional: o kernel controla todas as 
-principais funções do hardware, seja este um smartphone, um laptop, um servidor ou qualquer outro tipo de computador.
+pwd     //mostra qual meu diretório atual
+ls      //me mostra os diretórios e arquivos existentes no local atual
+ls -l   //mostra arquivos ocultos
+cd ~    //volta para diretório inicial 
+cd ..   //volta um diretótio para trás
+rmdir   //remove um diretório
+mkdir   //cria um diretório
+clear   //limpa o terminar
+ctrl + l    //limpa o terminal 
+
+nano NomeDoArquivo      //abre um editor de texto, para fechar use, ctrl + o, enter, ctrl + x
+rm NomeDoArquivo        //revome qualquer arquivo
+touch NomeDoArquivo     //cria arquivo qualquer
+cat NomeDoArquivo       //indica no terminal o que está escrito no arquivo 
+rm -r NomeDoArquivo     //remove o diretório e tudo que houver dentro dele
+
+sudo                    //dá permissão de root pelo que vem a seguir
+sudo su                 //cria uma root
+sudo apt update         //atualiza a lista de repositórios do sistema
+apt list --upgradable   //me mostra quais serão atualizados e quais são suas versões novas
+apt list NomeDoApp      //mostra a versão do app instalado
+apt search NomeDoApp    //busca, logo verifica se o app existe
+apt install NomeDoPacote    //instala o pacote, se o pacote muda o sistema é nescessário usar prefixo 'sudo'
+apt remove  NomeDoPacote    //remove o pacote, se o pacote muda o sistema é nescessário usar prefixo 'sudo'
+sudo apt upgrade            //instala novos pacotes sugeridos e atualizar pacotes existentes
+sudo apt full-upgrade       //remove pacotes sugeridos, instala novos pacotes sugeridos e atualizar pacotes existentes
+sudo !!                     //dá permissão para o comando que foi barrado anteriormente
+
+
+NomeDaInstrução --help      //também apresenta manual
+man     //prefixo de manual, use man NomeDaInstrução
