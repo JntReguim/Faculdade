@@ -1,13 +1,9 @@
-/*
-Vitor Taichi Taira
-Ciência da Computação
-823838
-*/
+// Jonatã Ap. Reguim - 824754
+// Ciência da Computação
 
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-
 
 #define MAX 10000000
 
@@ -26,15 +22,15 @@ int main(void) {
         scanf("%d", &vetor[i]);
     }
 
-    bool primeiro = true;
+    bool first = true;
     for(int i = 0; i < total; i++) {
         if(!visitados[vetor[i]]) {
-            if(!primeiro) {
+            if(!first) {
                 printf(" ");
             }
             printf("%d", vetor[i]);
             visitados[vetor[i]] = true;
-            primeiro = false;
+            first = false;
         }
     }
 
