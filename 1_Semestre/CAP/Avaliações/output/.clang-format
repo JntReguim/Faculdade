@@ -1,0 +1,18 @@
+Language: Cpp
+BasedOnStyle: LLVM
+IndentWidth: 4
+ColumnLimit: 0
+BreakBeforeBraces: Custom
+BraceWrapping:
+    AfterStruct: false
+    AfterClass: false
+    AfterFunction: false
+    AfterControlStatement: false
+    AfterEnum: false
+    AfterNamespace: false
+    AfterUnion: false
+    BeforeElse: true
+    IndentBraces: false
+SpaceBeforeParens: Never
+SpacesInParentheses: false
+SpaceBeforeCpp11BracedList: false

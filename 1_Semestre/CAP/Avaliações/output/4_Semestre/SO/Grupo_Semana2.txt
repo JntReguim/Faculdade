@@ -1,0 +1,28 @@
+Nos sistemas baseados em Unix, a criação de um novo processo é geralmente realizada com uma combinação de duas chamadas de sistema: fork e exec. 
+A chamada fork é usada para criar uma cópia exata do processo que a executa (conhecido como processo pai), resultando em um novo processo chamado 
+de processo filho. Esse processo filho é uma duplicação do pai, compartilhando muitos de seus atributos, como variáveis de ambiente, identificadores
+de arquivos abertos, permissões e estado geral. Isso significa que, após um fork, pai e filho estão em um estado idêntico, com exceção de suas 
+identificações de processo (PIDs) distintas. Esse mecanismo de duplicação completa e direta é eficiente para sistemas Unix e se alinha com a 
+filosofia desses sistemas de dividir claramente as tarefas em operações mais simples e específicas.
+
+Após a criação do processo filho com fork, a chamada exec é usada para substituir o espaço de execução do processo filho com o código de um novo 
+programa. Em outras palavras, exec permite que o processo filho, que originalmente era uma cópia do pai, carregue e execute um programa completamente
+diferente. Essa sequência de fork seguido por exec permite que os processos em Unix compartilhem dados temporariamente antes de o filho ser 
+substituído por um novo programa. Essa abordagem em duas etapas oferece flexibilidade e controle, possibilitando ao processo pai configurar ou 
+manipular o processo filho antes que este comece a executar o novo programa.
+
+Por outro lado, nos sistemas Windows, o equivalente para criar um novo processo é a chamada CreateProcess. Diferente da abordagem do Unix, 
+CreateProcess é uma única chamada que combina a criação de um novo processo e o carregamento de um programa para execução diretamente nele. 
+Com essa única chamada, o Windows não precisa de um mecanismo de duplicação de processos como o fork. O CreateProcess permite especificar em 
+detalhe tanto o programa que o processo deve executar quanto as configurações iniciais do processo, como o ambiente, diretório de trabalho e até 
+opções avançadas de herança de identificadores de arquivos. Esse processo é eficiente para o Windows, pois a criação de processos é planejada de 
+forma a lidar diretamente com as operações mais comuns sem uma etapa de duplicação inicial.
+
+A diferença fundamental entre as duas abordagens reflete os princípios de cada sistema. A filosofia Unix, mais modular, privilegia a simplicidade
+e flexibilidade ao dividir as operações de criação de processos (fork) e de substituição de programas (exec). Isso permite a realização de etapas 
+intermediárias entre fork e exec, nas quais o processo pai pode modificar o filho ou ajustar seu ambiente. Já a abordagem Windows, com 
+CreateProcess, visa uma operação mais direta e integrada, refletindo um modelo em que a criação de processos e o carregamento do programa são 
+realizados em uma única ação, tornando o sistema mais direto e menos dependente da combinação de chamadas separadas.
+
+Essas diferenças destacam como Unix e Windows priorizam distintas formas de controle e eficiência no gerenciamento de processos, com o Unix 
+valorizando uma arquitetura de controle granular e o Windows favorecendo uma criação de processos mais direta e integrada.

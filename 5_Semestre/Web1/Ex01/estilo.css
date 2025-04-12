@@ -1,0 +1,12 @@
+#p1 {
+    color: red;
+    cursor: pointer;
+}
+
+.verde {
+    color: green !important;
+}
+
+.azul {
+    color: blue !important;
+}

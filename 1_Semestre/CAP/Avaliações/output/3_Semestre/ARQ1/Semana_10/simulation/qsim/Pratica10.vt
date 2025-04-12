@@ -1,0 +1,279 @@
+// Copyright (C) 1991-2013 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// *****************************************************************************
+// This file contains a Verilog test bench with test vectors .The test vectors  
+// are exported from a vector file in the Quartus Waveform Editor and apply to  
+// the top level entity of the current Quartus project .The user can use this   
+// testbench to simulate his design using a third-party simulation tool .       
+// *****************************************************************************
+// Generated on "09/15/2024 21:47:41"
+                                                                        
+// Verilog Self-Checking Test Bench (with test vectors) for design :    aludec
+// 
+// Simulation tool : 3rd Party
+// 
+
+`timescale 1 ps/ 1 ps
+module aludec_vlg_sample_tst(
+	ALUOp,
+	funct3,
+	funct7b5,
+	opb5,
+	sampler_tx
+);
+input [1:0] ALUOp;
+input [2:0] funct3;
+input  funct7b5;
+input  opb5;
+output sampler_tx;
+
+reg sample;
+time current_time;
+always @(ALUOp or funct3 or funct7b5 or opb5)
+                                                                                
+begin                                                 
+ if ($realtime > 0)                                   
+ begin                                                
+	if ($realtime == 0 || $realtime != current_time)  
+	begin									          
+		if (sample === 1'bx)                          
+			sample = 0;                               
+		else                                          
+			sample = ~sample;                         
+	end										          
+	current_time = $realtime;					      
+ end                                                  
+end                                                   
+
+assign sampler_tx = sample;
+endmodule
+
+module aludec_vlg_check_tst (
+	ALUControl,
+	sampler_rx
+);
+input [2:0] ALUControl;
+input sampler_rx;
+
+reg [2:0] ALUControl_expected;
+
+reg [2:0] ALUControl_prev;
+
+reg [2:0] ALUControl_expected_prev;
+
+reg [2:0] last_ALUControl_exp;
+
+reg trigger;
+
+integer i;
+integer nummismatches;
+
+reg [1:1] on_first_change ;
+
+
+initial
+begin
+trigger = 0;
+i = 0;
+nummismatches = 0;
+on_first_change = 1'b1;
+end
+
+// update real /o prevs
+
+always @(trigger)
+begin
+	ALUControl_prev = ALUControl;
+end
+
+// update expected /o prevs
+
+always @(trigger)
+begin
+	ALUControl_expected_prev = ALUControl_expected;
+end
+
+
+// expected ALUControl[ 2 ]
+initial
+begin
+	ALUControl_expected[2] = 1'bX;
+end 
+// expected ALUControl[ 1 ]
+initial
+begin
+	ALUControl_expected[1] = 1'bX;
+end 
+// expected ALUControl[ 0 ]
+initial
+begin
+	ALUControl_expected[0] = 1'bX;
+end 
+// generate trigger
+always @(ALUControl_expected or ALUControl)
+begin
+	trigger <= ~trigger;
+end
+
+always @(posedge sampler_rx or negedge sampler_rx)
+begin
+`ifdef debug_tbench
+	$display("Scanning pattern %d @time = %t",i,$realtime );
+	i = i + 1;
+	$display("| expected ALUControl = %b | ",ALUControl_expected_prev);
+	$display("| real ALUControl = %b | ",ALUControl_prev);
+`endif
+	if (
+		( ALUControl_expected_prev[0] !== 1'bx ) && ( ALUControl_prev[0] !== ALUControl_expected_prev[0] )
+		&& ((ALUControl_expected_prev[0] !== last_ALUControl_exp[0]) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port ALUControl[0] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", ALUControl_expected_prev);
+		$display ("     Real value = %b", ALUControl_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_ALUControl_exp[0] = ALUControl_expected_prev[0];
+	end
+	if (
+		( ALUControl_expected_prev[1] !== 1'bx ) && ( ALUControl_prev[1] !== ALUControl_expected_prev[1] )
+		&& ((ALUControl_expected_prev[1] !== last_ALUControl_exp[1]) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port ALUControl[1] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", ALUControl_expected_prev);
+		$display ("     Real value = %b", ALUControl_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_ALUControl_exp[1] = ALUControl_expected_prev[1];
+	end
+	if (
+		( ALUControl_expected_prev[2] !== 1'bx ) && ( ALUControl_prev[2] !== ALUControl_expected_prev[2] )
+		&& ((ALUControl_expected_prev[2] !== last_ALUControl_exp[2]) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port ALUControl[2] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", ALUControl_expected_prev);
+		$display ("     Real value = %b", ALUControl_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_ALUControl_exp[2] = ALUControl_expected_prev[2];
+	end
+
+	trigger <= ~trigger;
+end
+initial 
+
+begin 
+$timeformat(-12,3," ps",6);
+#1000000;
+if (nummismatches > 0)
+	$display ("%d mismatched vectors : Simulation failed !",nummismatches);
+else
+	$display ("Simulation passed !");
+$finish;
+end 
+endmodule
+
+module aludec_vlg_vec_tst();
+// constants                                           
+// general purpose registers
+reg [1:0] ALUOp;
+reg [2:0] funct3;
+reg funct7b5;
+reg opb5;
+// wires                                               
+wire [2:0] ALUControl;
+
+wire sampler;                             
+
+// assign statements (if any)                          
+aludec i1 (
+// port map - connection between master ports and signals/registers   
+	.ALUControl(ALUControl),
+	.ALUOp(ALUOp),
+	.funct3(funct3),
+	.funct7b5(funct7b5),
+	.opb5(opb5)
+);
+// ALUOp[ 1 ]
+initial
+begin
+	ALUOp[1] = 1'b0;
+	ALUOp[1] = #120000 1'b1;
+	ALUOp[1] = #360000 1'b0;
+end 
+// ALUOp[ 0 ]
+initial
+begin
+	ALUOp[0] = 1'b0;
+	ALUOp[0] = #60000 1'b1;
+	ALUOp[0] = #60000 1'b0;
+end 
+// funct3[ 2 ]
+initial
+begin
+	funct3[2] = 1'b0;
+	funct3[2] = #360000 1'b1;
+	funct3[2] = #120000 1'b0;
+end 
+// funct3[ 1 ]
+initial
+begin
+	funct3[1] = 1'b0;
+	funct3[1] = #300000 1'b1;
+	funct3[1] = #180000 1'b0;
+end 
+// funct3[ 0 ]
+initial
+begin
+	funct3[0] = 1'b0;
+	funct3[0] = #420000 1'b1;
+	funct3[0] = #60000 1'b0;
+end 
+
+// opb5
+initial
+begin
+	opb5 = 1'b0;
+	opb5 = #240000 1'b1;
+	opb5 = #60000 1'b0;
+end 
+
+// funct7b5
+initial
+begin
+	funct7b5 = 1'b0;
+	funct7b5 = #180000 1'b1;
+	funct7b5 = #120000 1'b0;
+end 
+
+aludec_vlg_sample_tst tb_sample (
+	.ALUOp(ALUOp),
+	.funct3(funct3),
+	.funct7b5(funct7b5),
+	.opb5(opb5),
+	.sampler_tx(sampler)
+);
+
+aludec_vlg_check_tst tb_out(
+	.ALUControl(ALUControl),
+	.sampler_rx(sampler)
+);
+endmodule
+

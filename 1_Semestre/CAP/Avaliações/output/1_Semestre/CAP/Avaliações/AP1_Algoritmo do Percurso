@@ -1,0 +1,19 @@
+// Nome completo: Jonatã Aparecido Reguim
+// RA: 824754
+//
+// Objetivo: Faça um algoritmo em notação informal que descreva a sequência de passos 
+// para realizar o percurso da sala de aula até o ponto de ônibus do Departamento de 
+// Engenharia de Materiais. O percurso deve ser realizado a pé. O algoritmo deve descrever 
+// detalhes suficientes para que um colega da turma possa seguir e chegar corretamente no 
+// ponto de ônibus. Identifique também os dados de entrada e de saída.
+
+Input: Sala LE-4
+Output: Ponto de Ônibus em frente ao Departamento de Engenharia de Materiais
+
+Passos:
+    Fique em frente à Sala LE-4, vire à esquerda e caminhe até a saída.
+    Após sair, vire novamente à esquerda e caminhe até o fim do bloco do Departamento de Computação.
+    Vire à direita e rapidamente vire à esquerda, caminhando reto até chegar em frente às escadas.
+    Vire à direita e desça as escadas.
+    Atravesse a rua.
+    Você chegou ao destino.
