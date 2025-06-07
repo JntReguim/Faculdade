@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <title th:text="#{resultTitle}">Resultado da Conversão</title>
+
+        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+        <link th:href="@{/css/estilo.css}" rel="stylesheet" />
+    </head>
+    <body class="d-flex flex-column h-100">
+        <header>
+            <nav
+                class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+                <div
+                    class="container-fluid d-flex justify-content-between align-items-center">
+                    <h3 class="text-white mb-0" th:text="#{resultTitle}">
+                        Resultado da Conversão
+                    </h3>
+
+                    <div>
+                        <a
+                            th:href="@{/conversor(lang='pt')}"
+                            style="margin-right: 8px">
+                            <img
+                                th:src="@{/image/Brasil.gif}"
+                                alt="Português"
+                                style="width: 32px"/>
+                        </a>
+                        <a th:href="@{/conversor(lang='en')}">
+                            <img
+                                th:src="@{/image/EUA.gif}"
+                                alt="English"
+                                style="width: 32px"/>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="flex-shrink-0" style="padding-top: 80px">
+            <div class="container">
+                <div class="mb-3">
+                    <h3 th:text="#{resultTitle}">Resultado</h3>
+                </div>
+
+                <div class="mb-3">
+                    <p th:switch="${opcao}">
+                        <span
+                            th:case="'miToM'"
+                            th:text="#{miToMResult(${valor}, ${resultado})}">
+                            0 milhas equivalem a 0 metros
+                        </span>
+                        <span
+                            th:case="'mToMi'"
+                            th:text="#{mToMiResult(${valor}, ${resultado})}">
+                            0 metros equivalem a 0 milhas
+                        </span>
+                        <span
+                            th:case="'ftToM'"
+                            th:text="#{ftToMResult(${valor}, ${resultado})}">
+                            0 pés equivalem a 0 metros
+                        </span>
+                        <span
+                            th:case="'mToFt'"
+                            th:text="#{mToFtResult(${valor}, ${resultado})}">
+                            0 metros equivalem a 0 pés
+                        </span>
+                        <span th:case="*">[[#{invalidConversion}]]</span>
+                    </p>
+                </div>
+
+                <div class="mb-3">
+                    <a
+                        th:href="@{/conversor}"
+                        class="btn btn-primary"
+                        th:text="#{back}"
+                        >Voltar à página principal</a>
+                </div>
+            </div>
+        </main>
+
+        <script th:src="@{/js/bootstrap.bundle.min.js}" defer></script>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title th:text="#{error}">Error</title>
+        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+        <link th:href="@{/css/estilo.css}" rel="stylesheet" />
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-danger">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1" th:text="#{conversorTitle}"
+                    >Distance Converter</span>
+                <div class="d-flex">
+                    <a th:href="@{/conversor(lang='pt')}" class="mx-1">
+                        <img
+                            th:src="@{/image/Brasil.gif}"
+                            alt="Português"
+                            style="width: 32px"/>
+                    </a>
+                    <a th:href="@{/conversor(lang='en')}" class="mx-1">
+                        <img
+                            th:src="@{/image/EUA.gif}"
+                            alt="English"
+                            style="width: 32px"/>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container mt-4">
+            <h2 th:text="#{error}">Error</h2>
+            <p th:text="#{invalidInput}">
+                (a) The input must be a positive integer
+            </p>
+            <p th:text="#{invalidInput2}">
+                (b) The conversion option is invalid
+            </p>
+            <a th:href="@{/conversor}" class="btn btn-link" th:text="#{back}"
+                >Back to Home Page</a>
+        </div>
+
+        <script th:src="@{/js/bootstrap.bundle.min.js}" defer></script>
+    </body>
+</html>
