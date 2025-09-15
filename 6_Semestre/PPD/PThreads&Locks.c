@@ -157,3 +157,30 @@ int main() {
 
     return 0;
 }
+
+/*
+Testes Adicionais e Análise Conceitual (Respostas Breves)
+O que acontece se removermos o rwlock?
+Sem o rwlock, teríamos condições de corrida (race conditions). Um leitor poderia ler o vetor enquanto um escritor o modifica, 
+resultando em uma soma calculada sobre dados inconsistentes ou "rasgados" (metade novos, metade antigos). Além disso, dois escritores 
+poderiam tentar alterar o mesmo índice simultaneamente, levando a atualizações perdidas e corrupção de dados. O programa se tornaria 
+imprevisível e incorreto, pois a integridade do database não estaria garantida.
+
+Qual a diferença prática entre read lock e write lock?
+A diferença é a exclusividade. O read lock (pthread_rwlock_rdlock) é compartilhado: múltiplos leitores podem possuir o lock ao mesmo 
+tempo, permitindo alta concorrência de leitura, mas ele bloqueia qualquer escritor. O write lock (pthread_rwlock_wrlock) é exclusivo: 
+apenas uma thread escritora pode obtê-lo, e ele bloqueia todas as outras threads (leitores e escritores), garantindo que a modificação 
+dos dados seja atômica e isolada.
+
+Como a barreira garante que o programa não termine antes de todas as threads concluírem suas rodadas?
+A barreira (pthread_barrier_t) atua como um ponto de encontro sincronizado. Ela é inicializada com o número total de threads (N+M) e, 
+ao ser chamada (pthread_barrier_wait()), bloqueia cada thread que chega. Somente quando a última thread (a N+M-ésima) chama a função é 
+que todas as threads são desbloqueadas para continuar. Como a função main espera as threads com pthread_join(), e as threads só podem 
+terminar após passarem pela barreira, o main é efetivamente forçado a esperar que todas as threads completem suas rodadas.
+
+Qual seria o impacto se tivéssemos muitos mais leitores que escritores?
+Este cenário (ex: 100 leitores, 2 escritores) maximizaria o benefício do rwlock, permitindo um alto paralelismo de leitura, pois os 
+100 leitores poderiam executar suas somas simultaneamente. O contraponto negativo é o alto risco de inanição de escritores 
+(writer starvation): os escritores poderiam ficar bloqueados indefinidamente, pois a chance de haver sempre pelo menos um leitor 
+ativo com o read lock seria muito alta, impedindo os escritores de obterem o write lock exclusivo.
+*/
